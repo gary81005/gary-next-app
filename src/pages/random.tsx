@@ -5,8 +5,8 @@ import { Button, Card, CardContent, TextField, Typography } from '@mui/material'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-const riddleArr = ['宇宙，未來，砰砰', '隅中日昳,桌案几上,屈指成禮', 'a', 'b', 'c', 'd', 'e', 'f'];
-const candidate = ['Kai', 'Ann', 'Joe', 'Jordan', 'Will', 'Jay', 'Grace', 'JJF'];
+const riddleArr = process.env.RIDDLE?.split(',') || [];
+const candidate = process.env.CANDIDATE?.split(',') || [];
 
 const RandomPage = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
