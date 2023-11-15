@@ -18,10 +18,36 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
+  background: linear-gradient(to bottom, '#FFF', rgb(var(--background-end-rgb)))
     rgb(var(--background-start-rgb));
+}
+
+#spin {
+  font: 1em / 0 sans-serif;
+  user-select: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 62%;
+  left: 72%;
+  width: 120px;
+  height: 80px;
+  margin: -15%;
+  color: #fff;
+  box-shadow:
+    0 0 0 8px currentColor,
+    0 0px 15px 5px rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  transition: 0.8s;
+}
+
+#spin::after {
+  content: '';
+  position: absolute;
+  top: -17px;
+  border: 10px solid transparent;
+  border-bottom-color: currentColor;
+  border-top: none;
 }
