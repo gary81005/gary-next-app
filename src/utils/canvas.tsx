@@ -3,8 +3,8 @@ import { Sectors } from '@/types';
 const img = typeof window !== 'undefined' ? new Image() : null;
 
 if (img) {
-  // img.src =
-  //   'https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.18169-9/15871651_1309913589064745_3044464811171783538_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=be3454&_nc_ohc=8thXr32zjrkAX-5Mbix&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfBfPBRwy32WzY_89VyF4Z_2ypF6AA4_lUPhlmwcks5TdQ&oe=657A9B69';
+  img.src =
+    'https://scontent.ftpe8-1.fna.fbcdn.net/v/t1.18169-9/15871651_1309913589064745_3044464811171783538_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=be3454&_nc_ohc=8thXr32zjrkAX-5Mbix&_nc_ht=scontent.ftpe8-1.fna&oh=00_AfBfPBRwy32WzY_89VyF4Z_2ypF6AA4_lUPhlmwcks5TdQ&oe=657A9B69';
 }
 export function setBg(sectors: Sectors[]) {
   let randomColor = Math.floor(Math.random() * 16777215).toString(16);
