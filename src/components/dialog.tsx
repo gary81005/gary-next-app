@@ -7,8 +7,8 @@ import { TransitionProps } from '@mui/material/transitions';
 
 export interface SimpleDialogProps {
   open: boolean;
-  selectedValue: string;
-  onClose: (value: string) => void;
+  selectedValue: string | React.ReactNode;
+  onClose: () => void;
 }
 
 const Transition = React.forwardRef(function Transition(
@@ -24,11 +24,11 @@ function SimpleDialog(props: SimpleDialogProps) {
   const { onClose, selectedValue, open } = props;
 
   const handleClose = () => {
-    onClose(selectedValue);
+    onClose();
   };
 
   return (
-    <Dialog TransitionComponent={Transition} onClose={handleClose} open={open}>
+    <Dialog maxWidth='lg' TransitionComponent={Transition} onClose={handleClose} open={open}>
       <DialogTitle>Riddle</DialogTitle>
       <IconButton
         aria-label='close'

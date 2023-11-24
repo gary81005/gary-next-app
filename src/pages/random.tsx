@@ -1,7 +1,7 @@
-import { SimpleDialog } from '@/components';
+import { DisplayCard, SimpleDialog } from '@/components';
 import { Sectors } from '@/types';
 import { drawSector, setBg } from '@/utils';
-import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
+import { Button, Checkbox, FormControlLabel } from '@mui/material';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
@@ -18,6 +18,7 @@ const RandomPage = () => {
   const [selected, setSelected] = useState<string | null>(null);
   const [selectedArr, setSelectedArr] = useState<string[]>([]);
   const [open, setOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
   const [ctx, setCtx] = useState<CanvasRenderingContext2D | null | undefined>(null);
   // set frame counter
   const [shouldStop, setShouldStop] = useState(true);
@@ -94,28 +95,26 @@ const RandomPage = () => {
   return (
     <div className='flex items-center justify-center w-[100%] h-[100%]'>
       <div className='flex flex-col w-[20%] m-2'>
-        <Card className='mb-2'>
-          <CardContent className='flex flex-col'>
-            <Typography variant='h6'>Candidate</Typography>
-            {candidate.map((opt, index) => (
-              <div key={opt} className={twMerge('flex', index === count ? 'bg-amber-500' : '')}>
-                <span className='mr-2'>No.{index + 1}</span>
-                <span>{opt}</span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
-        <Card className='mb-2'>
-          <CardContent className='flex flex-col'>
-            <Typography variant='h6'>Riddle</Typography>
-            {candidate.map((opt, index) => (
-              <div key={opt}>
-                <span>{opt}:</span>
-                <span> "{selectedArr[index] || ''}" </span>
-              </div>
-            ))}
-          </CardContent>
-        </Card>
+        <DisplayCard title='Candidate'>
+          {candidate.map((opt, index) => (
+            <div key={opt} className={twMerge('flex', index === count ? 'bg-amber-500' : '')}>
+              <span className='mr-2'>No.{index + 1}</span>
+              <span>{opt}</span>
+            </div>
+          ))}
+        </DisplayCard>
+        <DisplayCard title='Riddle'>
+          {candidate.map((opt, index) => (
+            <div key={opt}>
+              <span>{opt}:</span>
+              <span> "{selectedArr[index] || ''}" </span>
+            </div>
+          ))}
+        </DisplayCard>
+        <FormControlLabel
+          control={<Checkbox value={checked} onChange={(e) => setChecked(e.target.checked)} />}
+          label='Picture Mode'
+        />
         <Button
           sx={{
             marginTop: '8px',
@@ -199,7 +198,7 @@ const RandomPage = () => {
       </div>
       <SimpleDialog
         open={open}
-        selectedValue={selected || ''}
+        selectedValue={checked ? <img src={`/${selected}.jpeg`} /> : selected || ''}
         onClose={() => {
           setOpen(false);
           setCount((c) => c + 1);
