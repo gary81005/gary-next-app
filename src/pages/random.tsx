@@ -7,7 +7,17 @@ import { twMerge } from 'tailwind-merge';
 
 const riddleArr = process.env.RIDDLE?.split(',') || [];
 const candidate = process.env.CANDIDATE?.split(',') || [];
-
+const origin = ['grace', 'will', 'kai', 'ru', 'jj', 'ann', 'joe', 'jordan'];
+// const firstStage = {
+//   kai: '上班前or下班後-家中-蒸氣加熱',
+//   ann: '夜晚-燈光昏暗的場所-一整套，其中有東西要用手指捏住><',
+//   ru: '宇宙-未來-砰砰',
+//   will: '晚上-浴室-清洗',
+//   grace: '上個月-水管-玩',
+//   jordan: '隅中日昳-桌案几上-屈指成禮',
+//   jj: '白天-辦公室-專注',
+//   joe: '搶到場地-室內尤佳-單手揮動',
+// };
 const RandomPage = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [title, setTitle] = useState<string>('Start!');
@@ -50,8 +60,9 @@ const RandomPage = () => {
   }
 
   const handleGenerate = () => {
+    const oriOwner = origin[count];
     const arr = riddleArr.filter((opt, index) => {
-      if (index === count || selectedArr.includes(opt)) {
+      if (index === count || opt === oriOwner || selectedArr.includes(opt)) {
         return false;
       } else {
         return true;
