@@ -60,9 +60,9 @@ const RandomPage = () => {
   }
 
   const handleGenerate = () => {
-    const oriOwner = origin[count];
+    const oriPos = origin.indexOf(candidate[count]);
     const arr = riddleArr.filter((opt, index) => {
-      if (index === count || opt === oriOwner || selectedArr.includes(opt)) {
+      if (index === count || index === oriPos || selectedArr.includes(opt)) {
         return false;
       } else {
         return true;
